@@ -88,14 +88,14 @@ def deleteTask():
 
             
 #icon
-Image_icon=PhotoImage(file="Image/task.png")
+Image_icon=PhotoImage(file="To-Do-List/Image/task.png")
 root.iconphoto(False, Image_icon)
 
 #topbar
-TopImage=PhotoImage(file="Image/topbar.png")
+TopImage=PhotoImage(file="To-Do-List/Image/topbar.png")
 Label(root, image=TopImage).pack()
 
-noteImage=PhotoImage(file="Image/task.png")
+noteImage=PhotoImage(file="To-Do-List/Image/task.png")
 Label(root, image=noteImage, bg="#32405b").place(x=90, y=20)
 
 heading=Label(root, text="TASK LIST", font="Times 20 bold", fg="white", bg="#32405b")
@@ -199,10 +199,10 @@ def populatelistboxFromDB():
 populatelistboxFromDB()
 
 #delete
-Delete_icon=PhotoImage(file="Image/delete.png")
+Delete_icon=PhotoImage(file="To-Do-List/Image/delete.png")
 Button(root, image=Delete_icon, bd=0, command=deleteTask).pack(side=BOTTOM, pady=13)
 
-Mark_icon=PhotoImage(file="Image/blue-tick.png")
+Mark_icon=PhotoImage(file="To-Do-List/Image/blue-tick.png")
 Button(root, image=Mark_icon, bd=0, command=lambda:updateTaskStatusInDB(listbox.get(ANCHOR),1)).place(x=100, y=680)
 
 root.mainloop()
