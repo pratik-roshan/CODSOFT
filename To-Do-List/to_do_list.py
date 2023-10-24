@@ -29,6 +29,7 @@ def create_connection():
 
 task_list = []
 
+# Function to ADD Task to the list
 def addTask(event=None):
     task_description = task_entry.get()
     task_entry.delete(0, END)
@@ -42,6 +43,7 @@ def addTask(event=None):
             print(f"Error: {e}")
             messagebox.showerror("Error", "Failed to add task to the database.")
 
+# Function to ADD Task to the Database
 def addTaskToDB(task_description):
     connection = create_connection()
     if connection:
@@ -58,6 +60,7 @@ def addTaskToDB(task_description):
             cursor.close()
             connection.close()
 
+# Functions to DELETE Task From Database
 def deleteTaskFromDB(task):
     connection = create_connection()
     if connection:
@@ -85,52 +88,6 @@ def deleteTask():
         except Error as e:
             print(f"Error: {e}")
             messagebox.showerror("Error", "Failed to delete task from the database.")
-
-            
-#icon
-Image_icon=PhotoImage(file="To-Do-List/Image/task.png")
-root.iconphoto(False, Image_icon)
-
-#topbar
-TopImage=PhotoImage(file="To-Do-List/Image/topbar.png")
-Label(root, image=TopImage).pack()
-
-noteImage=PhotoImage(file="To-Do-List/Image/task.png")
-Label(root, image=noteImage, bg="#32405b").place(x=90, y=20)
-
-heading=Label(root, text="TASK LIST", font="Times 20 bold", fg="white", bg="#32405b")
-heading.place(x=120, y=20)
-
-canvas = Canvas(root, width=400, height=750)
-canvas.pack
-
-#main
-frame=Frame(root, width=500, height=50, bg="white")
-frame.place(x=0, y=120)
-
-task=StringVar()
-task_entry=Entry(frame, width=35, font="arial 20", bd=0)
-task_entry.place(x=10, y=7)
-task_entry.focus()
-task_entry.bind("<Return>", addTask)
-
-button=Button(frame, text="ADD", font="TIMES 20 bold", command=addTask, width=6, bg="navy", fg="white", bd=1)
-button.place(x=300, y=0)
-
-
-# Listbox
-frame1=Frame(root, bd=3, width=1200, height=800, bg="white")
-frame1.place(x=0, y=180)
-
-listbox=Listbox(frame1, font='Times 20 bold', width=60, height=20, bg="white", fg="blue", cursor="hand2", selectbackground="black")
-listbox.pack(side=LEFT, fill=BOTH, padx=2)
-
-scrollbar=Scrollbar(frame1)
-scrollbar.pack(side=RIGHT, fill=BOTH)
-
-listbox.config(yscrollcommand=scrollbar.set)
-scrollbar.config(command=listbox.yview)
-
 
 
 def updateTaskStatusInDB(task_description, completed_status):
@@ -193,16 +150,60 @@ def populatelistboxFromDB():
         finally:
             cursor.close()
             connection.close()
+            
+# User Interface
+Image_icon=PhotoImage(file="Image/task.png")
+root.iconphoto(False, Image_icon)
+
+
+TopImage=PhotoImage(file="Image/topbar.png")
+Label(root, image=TopImage).pack()
+
+noteImage=PhotoImage(file="Image/task.png")
+Label(root, image=noteImage, bg="#32405b").place(x=90, y=20)
+
+heading=Label(root, text="TASK LIST", font="Times 20 bold", fg="white", bg="#32405b")
+heading.place(x=120, y=20)
+
+canvas = Canvas(root, width=400, height=750)
+canvas.pack
+
+frame=Frame(root, width=500, height=50, bg="white")
+frame.place(x=0, y=120)
+
+task=StringVar()
+task_entry=Entry(frame, width=35, font="arial 20", bd=0)
+task_entry.place(x=10, y=7)
+task_entry.focus()
+task_entry.bind("<Return>", addTask)
+
+button=Button(frame, text="ADD", font="TIMES 20 bold", command=addTask, width=6, bg="navy", fg="white", bd=1)
+button.place(x=300, y=0)
+
+
+# Listbox
+frame1=Frame(root, bd=3, width=1200, height=800, bg="white")
+frame1.place(x=0, y=180)
+
+listbox=Listbox(frame1, font='Times 20 bold', width=60, height=20, bg="white", fg="blue", cursor="hand2", selectbackground="black")
+listbox.pack(side=LEFT, fill=BOTH, padx=2)
+
+scrollbar=Scrollbar(frame1)
+scrollbar.pack(side=RIGHT, fill=BOTH)
+
+listbox.config(yscrollcommand=scrollbar.set)
+scrollbar.config(command=listbox.yview)
 
 
 # Function is called to populate tasks from the database to the listbox
 populatelistboxFromDB()
 
 #delete
-Delete_icon=PhotoImage(file="To-Do-List/Image/delete.png")
+Delete_icon=PhotoImage(file="Image/delete.png")
 Button(root, image=Delete_icon, bd=0, command=deleteTask).pack(side=BOTTOM, pady=13)
 
-Mark_icon=PhotoImage(file="To-Do-List/Image/blue-tick.png")
+# Completion Button
+Mark_icon=PhotoImage(file="Image/blue-tick.png")
 Button(root, image=Mark_icon, bd=0, command=lambda:updateTaskStatusInDB(listbox.get(ANCHOR),1)).place(x=100, y=680)
 
 root.mainloop()
