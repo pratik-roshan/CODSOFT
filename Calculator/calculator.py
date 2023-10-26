@@ -9,7 +9,6 @@ root.configure(bg="#17161b")
 
 equation = ""
 
-
 def show(value):
     global equation
     equation+=value
