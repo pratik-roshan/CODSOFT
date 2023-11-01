@@ -46,7 +46,7 @@ def key_event(event):
     elif key == "\x08":  # Handle Backspace key for clearing the last character
         clear_last()
 
-label_result = Label(root, width=30, height=2, text="", font=("Times New Roman", 30))
+label_result = Label(root, width=30, height=2, text="", font=("Times New Roman", 30), bg='#ccddff')
 label_result.pack()
 
 Button(root, text="C", width=5, height=1, font=("Times New Roman", 30, "bold"), bd=1, fg="#ffa500", bg="#2a2d36", command=lambda: clear()).place(x=10, y=100)
