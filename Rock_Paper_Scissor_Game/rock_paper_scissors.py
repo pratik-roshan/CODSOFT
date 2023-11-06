@@ -7,9 +7,9 @@ root.title("Rock-Paper-Scissors Game")
 root.resizable(False, False)
 
 # Load images for Rock, Paper, and Scissors
-rock_img = ImageTk.PhotoImage(Image.open("pictures/rock.jpg").resize((100, 100)))
-paper_img = ImageTk.PhotoImage(Image.open("pictures/paper.jpg").resize((100, 100)))
-scissors_img = ImageTk.PhotoImage(Image.open("pictures/scissors.jpg").resize((100, 100)))
+rock_img = ImageTk.PhotoImage(Image.open("Rock_Paper_Scissor_Game/pictures/rock.jpg").resize((100, 100)))
+paper_img = ImageTk.PhotoImage(Image.open("Rock_Paper_Scissor_Game/pictures/paper.jpg").resize((100, 100)))
+scissors_img = ImageTk.PhotoImage(Image.open("Rock_Paper_Scissor_Game/pictures/scissors.jpg").resize((100, 100)))
 
 # Scores Initialization
 user_score = 0
